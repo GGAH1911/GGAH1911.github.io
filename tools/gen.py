@@ -9,13 +9,13 @@
 사용: python3 tools/gen.py  (새 사이트 sitemap 을 받아 다시 만든다)
 """
 import os, re, shutil, urllib.request
-NEW = "https://wowbocho.pages.dev"
+NEW = "https://wowbocho.com"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 JS = """(function(){var p=location.pathname.replace(/^\\/wowbocho(?=\\/|$)/,"")||"/",d={},n=0;
 try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i),v=localStorage.getItem(k);if(k&&k.indexOf("wg:")===0&&v!=null&&v.length<20000){d[k]=v;n++;}}}catch(e){}
 var h=n?"#wgimport="+encodeURIComponent(JSON.stringify({d:d,h:location.hash})):location.hash;
-location.replace("https://wowbocho.pages.dev"+p+location.search+h);})();"""
+location.replace("https://wowbocho.com"+p+location.search+h);})();"""
 
 def page(target):
     return f"""<!doctype html>
@@ -24,7 +24,7 @@ def page(target):
 <link rel="canonical" href="{target}">
 <meta http-equiv="refresh" content="0;url={target}">
 <script>
-// 와우보초는 2026-10-06 https://wowbocho.pages.dev/ 로 옮겼다. 옛 주소 ggah1911.github.io/wowbocho/… 를 같은 경로로 넘겨준다
+// 와우보초는 2026-10-13 https://wowbocho.com/ 으로 옮겼다(그 전 2026-10-06 wowbocho.pages.dev). 옛 주소 ggah1911.github.io/wowbocho/… 를 같은 경로로 넘겨준다
 // 옛 주소의 브라우저 저장값(wg:*)은 이 도메인에만 있으므로 #wgimport= 에 실어 보내고, 새 사이트 app.js 가 받아 저장한다
 {JS}
 </script>
